@@ -1,4 +1,4 @@
-#ImageGame
+# ImageGame
 
 A simple image selector game
 
