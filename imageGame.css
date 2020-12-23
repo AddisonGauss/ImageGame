@@ -34,7 +34,7 @@ h1 {
 
 h2 {
   text-align: center;
-  color: green;
+  color: steelblue;
 }
 
 #msg {
@@ -82,6 +82,7 @@ button:hover {
 img {
   border: solid 10px transparent;
 }
+
 img:hover {
-  border-color: green;
+  border-color: steelblue;
 }
