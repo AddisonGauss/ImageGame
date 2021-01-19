@@ -79,6 +79,9 @@ let pickedImage
 let numPictures = 9
 let displayImgName = document.querySelector("#pictureName")
 let resetButton = document.querySelector("#reset")
+let playAgainBtn = document.getElementById("play-button")
+let popupContainer = document.getElementById("popup-container")
+let finalMessage = document.getElementById("final-message")
 let numberButtons = document.querySelectorAll(".mode")
 let arr = []
 
@@ -119,15 +122,17 @@ function correct(img) {
     items[i].style.display = "block"
     items[i].src = img.src
   }
+  popupContainer.style.display = "flex"
+
   if (
     img.src ===
     "https://www.worldpresidentsdb.com/images/presidents/vladimir-putin.jpg"
   ) {
     message.textContent = "CORRECT! But what is he doing here?"
-    resetButton.textContent = "Play Again?"
+    finalMessage.innerText = "CORRECT! But what is he doing here?"
   } else {
     message.textContent = "CORRECT! Click play again"
-    resetButton.textContent = "Play Again?"
+    finalMessage.innerText = "CORRECT! Click play again"
   }
 }
 
@@ -163,5 +168,10 @@ function setupNumberButtons() {
 }
 
 resetButton.addEventListener("click", function () {
+  reset()
+})
+
+playAgainBtn.addEventListener("click", function () {
+  popupContainer.style.display = "none"
   reset()
 })
