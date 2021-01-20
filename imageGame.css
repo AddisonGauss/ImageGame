@@ -64,7 +64,7 @@ h2 {
   background: steelblue;
 }
 #reset:before {
-  content: "NEW PICTURES";
+  content: "NEW";
 }
 #six:before {
   content: "6";
