@@ -67,7 +67,9 @@ h2 {
   color: white;
   background: steelblue;
 }
-
+#reset:before {
+  content: "NEW PICTURES";
+}
 #six:before {
   content: "6";
 }
@@ -143,7 +145,7 @@ img:hover {
 }
 
 @media (min-width: 550px) {
-  #reset {
+  #reset:before {
     content: "NEW PICTURES";
   }
   #numberOfImages:before {
