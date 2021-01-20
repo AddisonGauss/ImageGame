@@ -65,6 +65,7 @@ const imgs = [
   },
 ]
 
+//populate DOM
 for (let i = 0; i < 9; i++) {
   const div = document.createElement("div")
   div.classList.add("square")
@@ -73,17 +74,17 @@ for (let i = 0; i < 9; i++) {
   document.getElementById("container").appendChild(div)
 }
 
-let items = document.querySelectorAll("img")
-let message = document.querySelector("#msg")
+const items = document.querySelectorAll("img")
+const message = document.querySelector("#msg")
+const displayImgName = document.querySelector("#pictureName")
+const resetButton = document.querySelector("#reset")
+const playAgainBtn = document.getElementById("play-button")
+const popupContainer = document.getElementById("popup-container")
+const finalMessage = document.getElementById("final-message")
+const numberButtons = document.querySelectorAll(".mode")
 let pickedImage
 let numPictures = 9
-let displayImgName = document.querySelector("#pictureName")
-let resetButton = document.querySelector("#reset")
-let playAgainBtn = document.getElementById("play-button")
-let popupContainer = document.getElementById("popup-container")
-let finalMessage = document.getElementById("final-message")
-let numberButtons = document.querySelectorAll(".mode")
-let arr = []
+let itemsToDisplay = []
 
 initialize()
 function initialize() {
@@ -92,20 +93,8 @@ function initialize() {
   reset()
 }
 
-function randomizePictures() {
-  arr = []
-  while (arr.length < numPictures) {
-    let rand = Math.floor(Math.random() * imgs.length)
-    if (arr.length === 0) {
-      arr.push(imgs[rand])
-    }
-    if (!arr.some((item) => item.name === imgs[rand].name)) {
-      arr.push(imgs[rand])
-    }
-  }
-}
-
 function setupPictures() {
+  //add click listeners to the items
   for (let i = 0; i < items.length; i++) {
     items[i].addEventListener("click", function () {
       if (pickedImage.src === this.src) {
@@ -117,22 +106,31 @@ function setupPictures() {
     })
   }
 }
-function correct(img) {
+
+function setupNumberButtons() {
+  for (let i = 0; i < numberButtons.length; i++) {
+    numberButtons[i].addEventListener("click", function () {
+      numberButtons[0].classList.remove("selected")
+      numberButtons[1].classList.remove("selected")
+      this.classList.add("selected")
+      this.id === "six" ? (numPictures = 6) : (numPictures = 9)
+      reset()
+    })
+  }
+}
+
+function reset() {
+  clearBoxes()
+  randomizePictures()
+  //pick random img as target to find
+  let randomIndex = Math.floor(Math.random() * itemsToDisplay.length)
+  pickedImage = itemsToDisplay[randomIndex]
+  displayImgName.textContent = pickedImage.name
+  message.textContent = ""
+  //show items to pick from
   for (let i = 0; i < numPictures; i++) {
     items[i].style.display = "block"
-    items[i].src = img.src
-  }
-  popupContainer.style.display = "flex"
-
-  if (
-    img.src ===
-    "https://www.worldpresidentsdb.com/images/presidents/vladimir-putin.jpg"
-  ) {
-    message.textContent = "CORRECT! But what is he doing here?"
-    finalMessage.innerText = "CORRECT! But what is he doing here?"
-  } else {
-    message.textContent = "CORRECT! Click play again"
-    finalMessage.innerText = "CORRECT! Click play again"
+    items[i].src = itemsToDisplay[i].src
   }
 }
 
@@ -141,29 +139,41 @@ function clearBoxes() {
     items[i].style.display = "none"
   }
 }
-function reset() {
-  clearBoxes()
-  randomizePictures()
-  let randomIndex = Math.floor(Math.random() * arr.length)
-  pickedImage = arr[randomIndex]
-  displayImgName.textContent = pickedImage.name
-  resetButton.textContent = "New Pictures"
-  message.textContent = ""
-  for (let i = 0; i < numPictures; i++) {
-    items[i].style.display = "block"
-    items[i].src = arr[i].src
+
+function randomizePictures() {
+  itemsToDisplay = []
+  while (itemsToDisplay.length < numPictures) {
+    //get random index of imgs
+    let rand = Math.floor(Math.random() * imgs.length)
+    //always push first random item as it will be unique
+    if (itemsToDisplay.length === 0) {
+      itemsToDisplay.push(imgs[rand])
+    }
+    //if random item is not already in itemsToDisplay, push, else get another random item to check
+    if (!itemsToDisplay.some((item) => item.name === imgs[rand].name)) {
+      itemsToDisplay.push(imgs[rand])
+    }
   }
 }
 
-function setupNumberButtons() {
-  for (let i = 0; i < numberButtons.length; i++) {
-    numberButtons[i].addEventListener("click", function () {
-      numberButtons[0].classList.remove("selected")
-      numberButtons[1].classList.remove("selected")
-      this.classList.add("selected")
-      this.textContent === "Six" ? (numPictures = 6) : (numPictures = 9)
-      reset()
-    })
+function correct(img) {
+  //display all items as the correctly selected image
+  for (let i = 0; i < numPictures; i++) {
+    items[i].style.display = "block"
+    items[i].src = img.src
+  }
+  //display modal type screen with play again button
+  popupContainer.style.display = "flex"
+
+  if (
+    img.src ===
+    "https://www.worldpresidentsdb.com/images/presidents/vladimir-putin.jpg"
+  ) {
+    message.textContent = "CORRECT!"
+    finalMessage.innerText = "CORRECT! But what is he doing here?"
+  } else {
+    message.textContent = "CORRECT!"
+    finalMessage.innerText = "CORRECT! Click to Play Again"
   }
 }
 
@@ -172,6 +182,7 @@ resetButton.addEventListener("click", function () {
 })
 
 playAgainBtn.addEventListener("click", function () {
+  //remove modal screen
   popupContainer.style.display = "none"
   reset()
 })

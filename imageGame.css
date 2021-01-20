@@ -5,20 +5,29 @@ body {
 }
 
 .square img {
+  width: 100%;
+  height: 100%;
+}
+
+.square {
+  /* margin: 1.66%; */
   width: 25%;
-  height: 300px;
-  margin-bottom: 20px;
-  float: left;
-  margin: 1.66%;
-  border: solid 10px transparent;
+  /* margin-bottom: 1.5em; */
+  max-height: 300px;
+  /* margin: 1.66%; */
+  /* margin: 0.2%; */
+  border: solid 5px transparent;
   transition: background 0.6s;
   -webkit-transition: background 0.6s;
   -moz-transition: background 0.6s;
 }
 
-#container {
-  margin: 20px auto;
+.container {
+  margin: 0 auto;
   max-width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 h1 {
@@ -40,7 +49,7 @@ h2 {
 #msg {
   display: inline-block;
   width: 40%;
-  font-size: 24px;
+  font-size: 12px;
   font-weight: 700;
 }
 #textPresident {
@@ -50,7 +59,7 @@ h2 {
 #stripe {
   text-align: center;
   background: white;
-  height: 30px;
+  height: 40px;
   color: black;
 }
 
@@ -59,6 +68,12 @@ h2 {
   background: steelblue;
 }
 
+#six:before {
+  content: "6";
+}
+#nine:before {
+  content: "9";
+}
 button {
   border: none;
   background: none;
@@ -66,8 +81,7 @@ button {
   height: 100%;
   font-weight: 700;
   color: steelblue;
-  letter-spacing: 1px;
-  font-size: inherit;
+  font-size: 12px;
   transition: all 0.3s;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
@@ -126,4 +140,27 @@ img:hover {
 
 .popup button:focus {
   outline: 0;
+}
+
+@media (min-width: 550px) {
+  #reset {
+    content: "NEW PICTURES";
+  }
+  #numberOfImages:before {
+    content: "#Images:";
+  }
+  #msg {
+    font-size: 24px;
+  }
+  #six:before {
+    content: "Six";
+  }
+  #nine:before {
+    content: "Nine";
+  }
+
+  button {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
 }

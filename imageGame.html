@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Image Game</title>
-	<link rel="stylesheet" type="text/css" href="imageGame.css">
-</head>
-<body>
-<h1>
-	The Great 
-    <br>
-    <span id="textPresident">PRESIDENT</span>
-	<br>
-    Image Game  
-</h1>
+    <head>
+        <title>Image Game</title>
+        <link rel="stylesheet" type="text/css" href="imageGame.css">
+    </head>
+    <body>
+        <h1>
+            The Great 
+            <br>
+            <span id="textPresident">PRESIDENT</span>
+            <br>
+            Image Game  
+        </h1>
 
-<div id="stripe">
-	<button id="reset">Reset</button>
-    <span id="msg"></span>
-    
-    <span class="numberOfImages">#Images: 
-        <button class="mode">Six</button>
-        <button class="mode selected">Nine</button>
-    </span>
-	
-    
-</div>
-
-<h2><div>Please select the president - <span id="pictureName"></span></div></h2>
-
-
-    <div id="container">
-    </div>
-    
-    
-    <div class="popup-container" id="popup-container">
-        <div class="popup">
-            <h2 id="final-message"></h2>
-            <button id="play-button">Play Again</button>
+        <div id="stripe">
+            <button id="reset">NEW</button>
+            <span id="msg"></span>
+            
+            <span class="numberOfImages" id="numberOfImages">
+                <button class="mode" id="six"></button>
+                <button class="mode selected" id="nine"></button>
+            </span>
         </div>
-    </div>
-    .
-<script type="text/javascript" src="imageGame.js"></script>
-</body>
+
+        <h2><div>Please select the president - <span id="pictureName"></span></div></h2>
+
+        <div class="container" id="container">
+        </div>
+        
+        <div class="popup-container" id="popup-container">
+            <div class="popup">
+                <h2 id="final-message"></h2>
+                <button id="play-button">Play Again</button>
+            </div>
+        </div>
+            
+        <script type="text/javascript" src="imageGame.js"></script>
+    </body>
 </html>
