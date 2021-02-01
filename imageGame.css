@@ -7,11 +7,12 @@ body {
 .square img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 
 .square {
+  max-height: fit-content;
   width: 25%;
-  max-height: 300px;
   border: solid 5px transparent;
   transition: background 0.6s;
   -webkit-transition: background 0.6s;
@@ -30,16 +31,19 @@ h1 {
   text-align: center;
   line-height: 1.1;
   font-weight: normal;
+  font-size: 1.25em;
   color: white;
   background: steelblue;
   margin: 0;
   text-transform: uppercase;
-  padding: 20px 0;
+  padding: 0.25em 0;
 }
 
 h2 {
+  font-size: 1.25em;
   text-align: center;
   color: steelblue;
+  margin-bottom: 0;
 }
 
 #msg {
@@ -48,8 +52,9 @@ h2 {
   font-size: 12px;
   font-weight: 700;
 }
+
 #textPresident {
-  font-size: 200%;
+  font-size: 150%;
 }
 
 #stripe {
@@ -63,15 +68,19 @@ h2 {
   color: white;
   background: steelblue;
 }
+
 #reset:before {
   content: "NEW";
 }
+
 #six:before {
   content: "6";
 }
+
 #nine:before {
   content: "9";
 }
+
 button {
   border: none;
   background: none;
@@ -141,18 +150,34 @@ img:hover {
 }
 
 @media (min-width: 550px) {
+  h1 {
+    font-size: 1.75em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  .square {
+    max-height: 225px;
+  }
+
   #reset:before {
     content: "NEW PICTURES";
   }
+
   #numberOfImages:before {
     content: "#Images:";
   }
+
   #msg {
     font-size: 24px;
   }
+
   #six:before {
     content: "Six";
   }
+
   #nine:before {
     content: "Nine";
   }
