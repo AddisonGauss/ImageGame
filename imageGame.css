@@ -40,7 +40,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.25em;
+  font-size: 1em;
   text-align: center;
   color: steelblue;
   margin-bottom: 0;
@@ -60,7 +60,7 @@ h2 {
 #stripe {
   text-align: center;
   background: white;
-  height: 40px;
+  height: 20px;
   color: black;
 }
 
@@ -156,6 +156,10 @@ img:hover {
 
   h2 {
     font-size: 1.5em;
+  }
+
+  #stripe {
+    height: 40px;
   }
 
   .square {
